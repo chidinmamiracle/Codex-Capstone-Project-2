@@ -1,0 +1,85 @@
+.radio:hover {
+  background-color: rgba(2, 2, 250, 0.89) !important;
+}
+
+.radio {
+  gap: 10px;
+  margin: 20px;
+}
+
+#container {
+  background-color: rgb(215, 215, 235);
+}
+
+label.radio {
+  cursor: pointer;
+}
+
+.radio span {
+  padding: 4px 0px;
+  border: 1px rgba(2, 2, 250, 0.89);
+  display: inline-block;
+  color: rgb(161, 7, 7);
+  width: 100px;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 7px;
+  text-transform: uppercase;
+}
+
+.btn {
+  font-family: arial;
+  font: arial;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.border {
+  border-bottom: 5px;
+  border-width: 5px;
+  border-style: dotted;
+  background-color: rgb(41, 39, 39);
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.radio {
+  display: flex;
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+h2 {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  justify-content: center;
+  color: rgb(215, 215, 235);
+  font-size: 3rem;
+}
+
+.ans {
+  margin-left: 36px !important;
+}
+
+span {
+  font-size: 1em;
+  color: rgb(215, 215, 235);
+}
+
+.btn {
+  width: 50%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-content: center;
+}
+.btn:hover {
+  background-color: rgba(2, 2, 250, 0.89);
+}/*# sourceMappingURL=style.css.map */

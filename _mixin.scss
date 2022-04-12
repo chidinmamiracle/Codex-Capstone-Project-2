@@ -1,0 +1,18 @@
+@mixin identifier{
+   // font-size: 100px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+   // display: inline-block;
+    justify-content: center;
+
+}
+
+@mixin special{
+    width: 100%;
+    height: 100px;
+
+}@mixin widthHeight {
+    width: 50%;
+    height: 100%; 
+}

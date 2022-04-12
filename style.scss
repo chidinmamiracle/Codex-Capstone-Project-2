@@ -1,0 +1,97 @@
+@import '_variables';
+@import 'mixin';
+
+
+.radio{ 
+    &:hover{ 
+    background-color:$secondry !important;
+}
+
+}
+
+.radio{
+    gap: 10px;
+    margin: 20px;
+
+}
+
+
+#container{ 
+    background-color:$primary_1;
+}
+
+label.radio {
+    cursor: pointer
+}
+.radio span {
+    padding: 4px 0px;
+    border: 1px $secondry;
+    display: inline-block;
+    color: $primary_3;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 7px;
+    text-transform: uppercase
+}
+
+.btn {
+    font-family: $font;
+    font:$font;
+    font-style:$font-style;
+    font-weight: $font-weight;
+    font-size: 2rem;
+}
+
+.border{
+    border-bottom: 5px;
+    border-width: 5px;
+    border-style: dotted;
+    background-color:$textcolor ;
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.radio {
+    display: flex;
+    list-style-type: none;
+    padding: 10px; 
+    border-radius: 10px;
+}
+
+h2  {
+    @include identifier;
+    color: $primary_1;
+    font-size: 3rem;
+}
+
+
+.ans {
+    margin-left: 36px !important;
+}
+
+span {
+    font-size: 1em;
+    color: $primary_1;
+}
+
+
+.btn{
+    @include widthHeight;
+    border-radius: 10px;
+    display: flex;
+    align-content: center;
+    &:hover{
+        background-color: $secondry;
+    }
+}
+ #correct {
+    background-color:$secondry_2 ;
+}
+.radio span #wrong { 
+    background-color: $primary_3;
+}
