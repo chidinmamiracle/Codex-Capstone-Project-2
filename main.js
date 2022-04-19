@@ -46,37 +46,58 @@ function setNextQuestion() {
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-function showQuestion(question) {
-  questionElement.innerHTML = question.question;
-  question.answer.forEach((answer) => {
-    button.innerText = answer.text;
-    button.classlist.add("btn");
-  });
-  $(answer).on("click", selectAnswer(), {
-    if(correct_answer) {
-      button.dataset.correct = correct_answer;
-    },
-  });
+// function showQuestion(question) {
+//   questionElement.innerHTML = question.question;
+//   question.answer.forEach((answer) => {
+//     button.innerText = answer.text;
+//     button.classlist.add("btn");
+//   });
+//   $(answer).on("click", selectAnswer(), {
+//     if(correct_answer) {
+//       button.dataset.correct = correct_answer;
+//     },
+//   });
+// }
+
+// function selectAnswer(e) {
+//   const selectedButton = e.target;
+//   const correct = selectedButton.dataset.correct;
+//   Array.from(answerButtonElement.children).forEach((button) => {
+//     setStatusClass(button, button.dataset.correct);
+//   });
+// }
+
+// function setStatusClass(element, correct) {
+//   clearStatusClass(element);
+//   if (correct) {
+//     element.classlist.add("correct");
+//   } else {
+//     element.classlist.add("wrong");
+//   }
+// }
+
+// function clearStatusClass(element) {
+//   element.classlist.remove("correct");
+//   element.classlist.remove("correct");
+// }
+let score = 0;
+
+function selectAnswer() {
+  console.log("clicked");
+  trueButton.innerHTML = "True";
+  falseButton.innerHTML = "False";
+  textDisplay.innerHTML = this.getAttribute("data-question");
+  this.append(textDisplay, trueButton, falseButton);
+
+  trueButton.addEventListener("click", getResult);
+  falseButton.addEventListener("click", getResult);
 }
 
-function selectAnswer(e) {
-  const selectedButton = e.target;
-  const correct = selectedButton.dataset.correct;
-  Array.from(answerButtonElement.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
-}
-
-function setStatusClass(element, correct) {
-  clearStatusClass(element);
-  if (correct) {
-    element.classlist.add("correct");
-  } else {
-    element.classlist.add("wrong");
+function getResult() {
+  const answerButton = this.parentElement;
+  if (answerOfButton("data-answer") === this.innerHTML) {
+    score = score + parseInt(answerButton.getAttribute("data-value"));
+    scoreDisplay.innerHTML = score;
+    answerButton.classlist.add("correct-answer");
   }
-}
-
-function clearStatusClass(element) {
-  element.classlist.remove("correct");
-  element.classlist.remove("correct");
 }

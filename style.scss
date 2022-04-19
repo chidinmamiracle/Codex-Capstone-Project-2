@@ -4,7 +4,7 @@
 
 .radio{ 
     &:hover{ 
-    background-color:$secondry !important;
+    background-color:$secondry;
 }
 
 }
@@ -89,9 +89,7 @@ span {
         background-color: $secondry;
     }
 }
- #correct {
-    background-color:$secondry_2 ;
-}
-.radio span #wrong { 
-    background-color: $primary_3;
+ 
+.btn.correct-answer{
+    background-color: rgb(70, 224, 70);
 }
