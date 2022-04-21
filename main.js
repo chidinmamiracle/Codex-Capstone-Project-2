@@ -1,24 +1,3 @@
-let currentQuestionIndex = 0;
-$("#next").on("click", function () {
-  if (currentQuestionIndex < 9) {
-    currentQuestionIndex++;
-    $("#questions").text(questions[currentQuestionIndex].question);
-    console.log(currentQuestionIndex);
-  } else {
-    //score or result
-  }
-});
-
-$("#previous").on("click", function () {
-  if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    $("#questions").text(questions[currentQuestionIndex].question);
-    console.log(currentQuestionIndex);
-  } else {
-    //score or result
-  }
-});
-
 const quiz = document.getElementById("quiz");
 const result = document.getElementsByClassName("result");
 
@@ -33,71 +12,99 @@ fetch(url)
     return response.json();
   })
   .then((data) => {
-    questions = data.results;
-    startquiz();
-    console.log(questions);
+    questions = data.result;
+    console.log("question");
   });
 
-function startquiz() {
-  $("#questions").text(questions[currentQuestionIndex].question);
-}
+let currentQuestionIndex = 0;
+let counter = 1;
+let question;
+let answers = [
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+  "null",
+];
 
-function setNextQuestion() {
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
-}
+$("#true").on("click", function () {
+  answers[currentQuestionIndex] = "True";
+});
 
-// function showQuestion(question) {
-//   questionElement.innerHTML = question.question;
-//   question.answer.forEach((answer) => {
-//     button.innerText = answer.text;
-//     button.classlist.add("btn");
-//   });
-//   $(answer).on("click", selectAnswer(), {
-//     if(correct_answer) {
-//       button.dataset.correct = correct_answer;
-//     },
-//   });
-// }
+$("#false").on("click", function () {
+  answers[currentQuestionIndex] = "False";
+});
 
-// function selectAnswer(e) {
-//   const selectedButton = e.target;
-//   const correct = selectedButton.dataset.correct;
-//   Array.from(answerButtonElement.children).forEach((button) => {
-//     setStatusClass(button, button.dataset.correct);
-//   });
-// }
-
-// function setStatusClass(element, correct) {
-//   clearStatusClass(element);
-//   if (correct) {
-//     element.classlist.add("correct");
-//   } else {
-//     element.classlist.add("wrong");
-//   }
-// }
-
-// function clearStatusClass(element) {
-//   element.classlist.remove("correct");
-//   element.classlist.remove("correct");
-// }
-let score = 0;
-
-function selectAnswer() {
-  console.log("clicked");
-  trueButton.innerHTML = "True";
-  falseButton.innerHTML = "False";
-  textDisplay.innerHTML = this.getAttribute("data-question");
-  this.append(textDisplay, trueButton, falseButton);
-
-  trueButton.addEventListener("click", getResult);
-  falseButton.addEventListener("click", getResult);
-}
+$("#form").submit(function (e) {
+  e.preventDefault();
+  if (currentQuestionIndex < 9) {
+    currentQuestionIndex++;
+    $("#questions").text(questions[currentQuestionIndex].question);
+    $("#counter").text(`${++counter} of 10`);
+    $("input:radio[name=answers]:checked")[0].checked = false;
+  } else {
+    $("#answersPage").css("display", "none");
+    $("#scorePage").css("display", "block");
+    getResult();
+    const result = getScore();
+    $("#score").text(`Total will be ${result} of 10`);
+  }
+});
 
 function getResult() {
-  const answerButton = this.parentElement;
-  if (answerOfButton("data-answer") === this.innerHTML) {
-    score = score + parseInt(answerButton.getAttribute("data-value"));
-    scoreDisplay.innerHTML = score;
-    answerButton.classlist.add("correct-answer");
-  }
+  $("#answers").append(
+    answers.map(function (v, index) {
+      return $("<li/>", {
+        value: v[index],
+        text: `Question ${index}: ${questions[index].question}.answer: ${v}. correct: ${questions[index].question}`,
+      });
+    })
+  );
 }
+
+function getScore() {
+  let score = 0;
+  let counter = 0;
+  answers.forEach((element) => {
+    if (element === questions[counter].correct_answer) {
+      score++;
+    }
+    counter++;
+  });
+  return score;
+}
+
+// function startquiz() {
+//   $("#questions").text(questions[currentQuestionIndex].question);
+// }
+
+// function setNextQuestion() {
+//   showQuestion(shuffledQuestions[currentQuestionIndex]);
+// }
+
+// let score = 0;
+
+// function selectAnswer() {
+//   console.log("clicked");
+//   trueButton.innerHTML = "True";
+//   falseButton.innerHTML = "False";
+//   textDisplay.innerHTML = this.getAttribute("data-question");
+//   this.append(textDisplay, trueButton, falseButton);
+
+//   trueButton.addEventListener("click", getResult);
+//   falseButton.addEventListener("click", getResult);
+// }
+
+// function getResult() {
+//   const answerButton = this.parentElement;
+//   if (answerOfButton("data-answer") === this.innerHTML) {
+//     score = score + parseInt(answerButton.getAttribute("data-value"));
+//     scoreDisplay.innerHTML = score;
+//     answerButton.classlist.add("correct-answer");
+//   }
+// }
